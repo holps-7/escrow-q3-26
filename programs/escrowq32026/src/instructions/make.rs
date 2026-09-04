@@ -1,6 +1,5 @@
 use anchor_lang::prelude::*;
-
-use crate::{Escrow, ESCROW_SEED};
+use crate::{Escrow, ESCROW_SEED, error::EscrowError};
 use anchor_spl::{
     associated_token::AssociatedToken,
     token_interface::{transfer_checked, Mint, TokenAccount, TokenInterface, TransferChecked},
@@ -69,6 +68,8 @@ impl<'info> Make<'info> {
 
     //Deposit tokens from maker to vault
     pub fn deposit(&mut self, deposit: u64) -> Result<()> {
+        require!(deposit > 0, EscrowError::InvalidDepositAmount);
+        
         let transfer_accounts = TransferChecked {
             from: self.maker_ata_a.to_account_info(),
             mint: self.mint_a.to_account_info(),
