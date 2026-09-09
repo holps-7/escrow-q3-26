@@ -44,4 +44,12 @@ pub mod escrowq32026 {
     pub fn refund(ctx: Context<Refund>) -> Result<()> {
         ctx.accounts.refund_and_close_vault()
     }
+
+    #[instruction(discriminator = 3)]
+    pub fn take(ctx: Context<Take>) -> Result<()> {
+        ctx.accounts.transfer()?;
+        ctx.accounts.transfer_and_close()?;
+        
+        Ok(())
+    }
 }
