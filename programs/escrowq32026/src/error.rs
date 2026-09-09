@@ -4,6 +4,8 @@ use anchor_lang::prelude::*;
 pub enum EscrowError {
     #[msg("The escrow has expired")]
     EscrowExpired,
-    #[msg("Deposit amount must be greater than zero.")]
+    #[msg("Deposit amount must be greater than zero")]
     InvalidDepositAmount,
+    #[msg("Receive amount must be greater than zero")]
+    InvalidReceiveAmount,
 }
