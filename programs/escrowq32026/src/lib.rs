@@ -9,7 +9,7 @@ pub use constants::*;
 pub use instructions::*;
 pub use state::*;
 
-declare_id!("5Y6HMSgNYbkcBiQCukYvTK56aQarSpq1Nk9aiSsjws2o");
+declare_id!("EBXQ5AMy7zqoFV6oXzqvR9KftoTFhuDhsAX9dNQhZnrZ");
 
 // Two parties — a maker and a taker — can swap tokens without trusting each other or a third party.
 // The maker deposits token A into a program-controlled vault and specifies how much of token B they want in return.
