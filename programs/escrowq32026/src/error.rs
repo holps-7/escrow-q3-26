@@ -8,4 +8,6 @@ pub enum EscrowError {
     InvalidDepositAmount,
     #[msg("Receive amount must be greater than zero")]
     InvalidReceiveAmount,
+    #[msg("Expiration must be in the future and can only be extended")]
+    InvalidExpiration,
 }

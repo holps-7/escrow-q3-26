@@ -19,6 +19,8 @@ impl<'info> Update<'info> {
     //Update the escrow expiration time 
     pub fn update(&mut self, receive: Option<u64>, expiration: i64) -> Result<()> {
         require!(self.escrow.expiration > Clock::get()?.unix_timestamp, EscrowError::EscrowExpired);
+        // Extend-only
+        require!(expiration > self.escrow.expiration, EscrowError::InvalidExpiration);
 
         if let Some(receive) = receive {
             require!(receive > 0, EscrowError::InvalidReceiveAmount);

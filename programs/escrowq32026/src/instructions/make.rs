@@ -54,6 +54,12 @@ impl<'info> Make<'info> {
         bumps: &MakeBumps,
         expiration: i64,
     ) -> Result<()> {
+        // Timed escrow: the deal must have a future deadline
+        require!(
+            expiration > Clock::get()?.unix_timestamp,
+            EscrowError::InvalidExpiration
+        );
+
         self.escrow.set_inner(Escrow {
             seed,
             maker: self.maker.key(),

@@ -16,9 +16,10 @@ declare_id!("EBXQ5AMy7zqoFV6oXzqvR9KftoTFhuDhsAX9dNQhZnrZ");
 // Any taker who holds token B can complete the swap atomically. If no taker appears, the maker can reclaim their tokens at any time.
 
 // Maker deposits token A  →  vault (PDA-owned)
-//                                       ↓  taker sends token B to maker
+//                                       ↓  taker sends token B to maker      (before expiration)
 //                                       ↓  vault releases token A to taker
 //                                       ↓  escrow + vault accounts closed, rent returned
+//                                       ↓  …or after expiration: maker gets refunded from the vault
 
 #[program]
 pub mod escrowq32026 {
